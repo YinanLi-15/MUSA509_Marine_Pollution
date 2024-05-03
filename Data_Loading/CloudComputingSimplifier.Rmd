@@ -634,7 +634,6 @@ When looking at the current litter points (red dots), we see a vague circularly 
 ```{r, warning=FALSE, message=FALSE}
 ggplot() +
     geom_sf(data = litter_risk_sf, aes(fill = Risk_Category), colour = NA) +
-    geom_sf(data = litter_p, size = .3, colour = "red") +
     scale_fill_viridis(discrete = TRUE) +
     mapTheme(title_size = 40)
 ```
