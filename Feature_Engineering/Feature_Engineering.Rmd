@@ -111,7 +111,7 @@ grid.arrange(
 PROJECT_ID <- "musa509-marine-pollution"
 
 # Authenticate
-bq_auth(path = "E:/UPenn/24Spring/MUSA509/MUSA509_Marine_Pollution/Feature_Engineering/keys/musa509-marine-pollution-4ad4b3458a23.json")
+bq_auth(path = "https://raw.githubusercontent.com/YinanLi-15/MUSA509_Marine_Pollution/main/Feature_Engineering/keys/musa509-marine-pollution-4ad4b3458a23.json")
 
 # Define your dataset and table
 dataset_id <- "pollution"
