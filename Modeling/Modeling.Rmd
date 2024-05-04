@@ -64,7 +64,7 @@ gcs_global_bucket(BUCKET_NAME)
 PROJECT_ID <- "musa509-marine-pollution"
 
 # Authenticate
-bq_auth(path = "E:/UPenn/24Spring/MUSA509/MUSA509_Marine_Pollution/Modeling/keys/musa509-marine-pollution-03c6d9b8bb8f.json")
+bq_auth(path = "https://raw.githubusercontent.com/YinanLi-15/MUSA509_Marine_Pollution/main/Modeling/keys/musa509-marine-pollution-03c6d9b8bb8f.json")
 ```
 
 ```{r load_finalnet_from_gcs, warning=FALSE, message=FALSE}
