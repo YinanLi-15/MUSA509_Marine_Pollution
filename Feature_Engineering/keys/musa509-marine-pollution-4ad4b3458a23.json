@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "musa509-marine-pollution",
+  "private_key_id": "4ad4b3458a23d9b333cf7eb2bb374dfbf34c1d23",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDKw6pdXovrQV3O\nzWBkWf7rb+JVRZE02ADSL7mzm7HtuJDdGlmprnxQ0/co/bLpEptMYw7OU+3TuEZI\nXyuU+dGS0sp8nuaFNFqx+MYaxWcALoC2g6sScV6W0+l8iKAC7/1k+ni2VdDCqUlo\ns18r2su1CZ82S/CIUHojvbLq+H+E4nfrq3TaEzBT8CYJtftiglzDkdQZpNnxg9+1\nWwr+UFWTYGm+CsMknFXsLARjReX467AzembR/dDNm4fJJeP+ZtsyaqMepGZWWMVW\n6WSvvLQ19Fce7SYyNO5rulXEy+35H5Epw44bV7qV2IHuNioa7KdO03/me6sgvF6/\n4OhXH4hFAgMBAAECggEAEKjqgNDxpKMCiukfhCdL1XrkKRb18xZTXPG8a5g9kpdx\nWaVeXB2Ay+BapLTRpCpZ9bkG4KePOS/hIHWnXk53bH2i0wH4VVYDpK9Y0Z7KE37+\npuBjKDkF6VUgkFGmeg9PbeJRlEOxSyk/JZnlVjRcO/P+L6cmLIEWRAUEZB+GVLvk\nZzD67jYhgDnuT3WTZ1Ug6GKagMUsvOg46Ne8sgrqQ++oBEcubrfr1jkG4UTDuOPw\nL+aaIHRAiCdaMOqKE0Gus4TEosXBLyzQ6IiYZi0XGs86A5P097EmJMyJxToPccWO\nNxdByqZtsiuweXnb3cgPSFODJEqA5R2d4lmezwRqUQKBgQDlqXL9j9jOKxA9eMbK\nTDcdLgHfriPie5Q0VjPVpwutVvv7hcXQ4gDLNAV+lLT8ig7oos+bBPGFGdlutJOU\nJV1soBeUnc8EAkMontaYjsl/7G7q8+ODhHjAVjMybp8d4VWo21qR8EzJ7YPph8pZ\nblebrtKY8c1Q0JEDBs8MMY8Q1QKBgQDiBIpyH2DSmj2xzamPxUsVGud/BZPvdTmX\n8qTrKZ94i/sUmFFeU8DY+lvV9cHeSf+EVkKnnnyaCBQvoEkZIAo68ZNcflGsBXlo\n+iHlInXAkEuDZsl5zzwKDMubS6D8E7M7DresDY5ymJmAA+YirUZrmu0jY/4zujju\nczH3gBvRsQKBgCEqLyjetPhQz6+Q2WQtTWgxVKPwic4S+nv0Vtfrn4wQm6Le1oor\nmOG/SWvWHay6YxzFJiXEuPv3l6ac/RLPsoYVOFKF13dEvF4JUgQF2qNWiU30mk5L\nuwRLbmlCAEhYWf5gbtvUT8J5QitfKKFxhcU9obvkbznUZJyDRzMDlR1hAoGBAJtX\n66AMmQunH4g5hrVeMQDMgRf4yXjn5THegCNxdD3yWBwLpMFkZ0O6r6wbQah6y7g1\nYZK7h4CG1Pj2/cbbEqz4pQQJfjDxgkT4xpsqWCyGAKDL4OZr3SQ7LyYJkRgwohuR\nPgRvPNzerYIjK+XhmmkTDrIoY+tBryeU3V7zGivBAoGAQ4L7ecRfh9L2ociQrtCg\nyuoytRvyRSPJKYfRDWcyMs04vvjujHG1eJGhBVvYKN+Y94XzIec7gzeGEFoQTOpx\nXr9LHs2mibftixr0OTe/5O33OVkD+uC+UY/pZE8LoclEGdMccZLqXFk788suBj/q\n5jztBjbSxK6EqjPbK7SxDtQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "data-pipeline@musa509-marine-pollution.iam.gserviceaccount.com",
+  "client_id": "103219213745698297063",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/data-pipeline%40musa509-marine-pollution.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
