@@ -1,0 +1,137 @@
+---
+title: "Ocean Conservancy, Urban Ocean Marine Debris Prediction"
+subtitle: "Yinan Li, Tiffany Luo, Xiaofan Liu， Trevor Kapuvari"
+author: "University of Pennsylvania"
+date: "2024-05-07"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: flatly
+    highlight: tango
+    number_sections: yes
+mainfont: DejaVu Sans
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Praparing
+```{r, warning=FALSE, message=FALSE, error=FALSE, include=FALSE,  }
+knitr::opts_chunk$set(echo = TRUE)
+#install.packages("bigrquery")
+#install.packages("googleCloudStorageR")
+
+library(bigrquery) # used for querying BigQuery
+library(googleCloudStorageR)  # This library helps in interacting with GCS
+library(tidyverse)
+library(sf)
+library(RSocrata)
+library(viridis)
+library(spatstat)
+library(raster)
+library(spdep)
+library(FNN)
+library(grid)
+library(gridExtra)
+library(knitr)
+library(kableExtra)
+library(osmdata)
+library(tidycensus)
+library(classInt)
+library(RCurl)
+library(httr)
+library(osmdata)
+library(randomForest)
+
+source("https://raw.githubusercontent.com/urbanSpatial/Public-Policy-Analytics-Landing/master/functions.r")
+st_c    <- st_coordinates
+st_coid <- st_centroid
+
+palette6 <- c("#264653","#2a9d8f",'#8AB17D',"#e9c46a",'#f4a261',"#e76f51")
+palette5 <- c("#264653","#2a9d8f","#e9c46a",'#f4a261',"#e76f51")
+palette4 <- c("#264653","#2a9d8f","#e9c46a","#e76f51")
+palette2 <- c("#264653","#2a9d8f")
+```
+
+```{r, warning=FALSE, message=FALSE, error=FALSE,  }
+# Set your GCS bucket
+BUCKET_NAME <- "musa509_marine_pollution_prepared_data"
+
+gcs_global_bucket(BUCKET_NAME)
+
+PROJECT_ID <- "musa509-marine-pollution"
+
+# Authenticate
+bq_auth(path = "https://raw.githubusercontent.com/YinanLi-15/MUSA509_Marine_Pollution/main/Modeling/keys/musa509-marine-pollution-26f9f59a0e56.json.")
+```
+
+```{r load_finalnet_from_gcs, warning=FALSE, message=FALSE}
+
+bucket <- "musa509_marine_pollution_prepared_data"
+object <- "final_net.csv"
+
+# Read data directly into R
+df <- gcs_get_object(object, bucket = bucket, saveToDisk = NULL)
+df <- read.csv(text = rawToChar(data))
+```
+
+
+```{r message=FALSE, warning=FALSE, results='hide'}
+reg.ss.vars <- c("rst_nn", "rstrt.isSig.dist","road_nn", "road.isSig.dist","wtr_nn", "wtr.isSig.dist")
+
+## RUN REGRESSIONS
+reg.ss.spatialCV <- crossValidate(
+  dataset = final_net,
+  id = "uniqueID",
+  dependentVariable = "countlitter",
+  indVariables = reg.ss.vars) %>%
+    dplyr::select(uniqueID, countlitter, Prediction, geometry)
+```
+
+
+```{r message=FALSE, warning=FALSE, results='hide'}
+error_by_reg_and_fold <- 
+  reg.ss.spatialCV %>%
+    group_by(uniqueID) %>% 
+    summarize(Mean_Error = mean(Prediction - countlitter, na.rm = T),
+              MAE = mean(abs(Mean_Error), na.rm = T),
+              SD_MAE = mean(abs(Mean_Error), na.rm = T)) %>%
+  ungroup()
+
+
+
+```
+
+
+
+```{r, warning=FALSE, message=FALSE}
+ml_breaks <- classIntervals(reg.ss.spatialCV$Prediction, 
+                             n = 5, "fisher")
+litter_risk_sf <-
+  reg.ss.spatialCV %>%
+  mutate(label = "Assessment Predictions",
+         Risk_Category =classInt::findCols(ml_breaks),
+         Risk_Category = case_when(
+           Risk_Category == 5 ~ "5th",
+           Risk_Category == 4 ~ "4th",
+           Risk_Category == 3 ~ "3rd",
+           Risk_Category == 2 ~ "2nd",
+           Risk_Category == 1 ~ "1st")) %>%
+  cbind(
+    aggregate(
+      dplyr::select(litter_p) %>% mutate(litterCount = 1), ., sum) %>%
+      mutate(litterCount = replace_na(litterCount, 0))) %>%
+  dplyr::select(label,Risk_Category, litterCount)
+```
+
+```{r, warning=FALSE, message=FALSE}
+ggplot() +
+    geom_sf(data = litter_risk_sf, aes(fill = Risk_Category), colour = NA) +
+    scale_fill_viridis(discrete = TRUE) +
+    mapTheme(title_size = 40)
+```
+
+
+
